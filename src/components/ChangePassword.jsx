@@ -17,7 +17,7 @@ function ChangePassword() {
 
         try {
 
-            const res = await Axios.put('admin/changePassword', { password }); // Use the Axios instance
+            const res = await Axios.put('client/changePassword', { password }); // Use the Axios instance
             
 
             Notifier(res.meta.msg, 'Success')

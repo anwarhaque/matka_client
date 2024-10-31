@@ -1,6 +1,6 @@
 
 import './App.css'
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate  } from "react-router-dom";
 import Layout from "./layouts/Layout";
 import Dashboard from "./components/Dashboard";
 import ChangePassword from "./components/ChangePassword";
@@ -25,6 +25,8 @@ import './assets/css/app.css'
 import DrowList from './components/master/drow/DrowList';
 import AddDrow from './components/master/drow/AddDrow';
 import EditDrow from './components/master/drow/EditDrow';
+import PlayGame from './components/master/drow/PlayGame';
+import Game from './components/master/drow/Game';
 function App() {
 
   return (
@@ -33,21 +35,10 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/" element={<ProtectedRoute><Layout /></ProtectedRoute>}>
-            <Route index element={<Dashboard />} />
-            <Route path="drow-master" element={<DrowList />} />
-            <Route path="drow-master/add" element={<AddDrow />} />
-            <Route path="drow-master/edit/:drowId" element={<EditDrow />} />
-            <Route path="client-master" element={<ClientList />} />
-            <Route path="client-master/add" element={<AddClient />} />
-            <Route path="client-master/edit/:userId" element={<EditClient />} />
-            <Route path="agent-master" element={<AgnetList />} />
-            <Route path="agent-master/add" element={<AddAgent />} />
-            <Route path="agent-master/edit/:userId" element={<EditAgent />} />
-            <Route path="client-report" element={<ClientReport />} />
-            <Route path="agent-report" element={<AgentReport />} />
-            <Route path="my-report" element={<MyReport />} />
-            <Route path="client-limit" element={<ClientLimit />} />
-            <Route path="agent-limit" element={<AgentLimit />} />
+            <Route index element={<Navigate to="/drow" replace />} />
+            <Route path="drow" element={<DrowList />} />
+            <Route path="drow/:drowId" element={<Game />} />
+            <Route path="drow/:drowId/:roundType" element={<PlayGame />} />
             <Route path="profile" element={<Profile />} />
             <Route path="change-password" element={<ChangePassword />} />
           </Route>

@@ -1,10 +1,20 @@
 .logo img {
-    width: 100%;
+  width: 100%;
 }
 
-.float-right{
-    display: block;
-    float: right;
+.float-right {
+  display: block;
+  float: right;
+}
+
+.float-center {
+  display: flex;
+  justify-content: center;
+}
+
+.float-left {
+  display: block;
+  float: left;
 }
 
 /* Chrome, Safari, Edge, and Opera */
