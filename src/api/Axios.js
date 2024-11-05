@@ -37,6 +37,11 @@ Axios.interceptors.response.use(
         localStorage.removeItem('authToken');
         window.location.href = '/login'; // Redirect to login page
       }
+console.log(error);
+
+      if(error.response.data.message){
+        Notifier(error.response.data.message, 'Error')
+      }
       // Handle other error statuses like 403, 404, 500, etc.
     }else{
       Notifier(error.message, 'Error')

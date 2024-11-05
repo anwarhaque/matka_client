@@ -9,23 +9,23 @@ const Header = () => {
   };
 
   const auth = useAuth();
-  
+
   const handleLogout = (event) => {
     event.preventDefault();
     auth.logout();
-};
+  };
 
   return (
     <nav className="navbar navbar-expand navbar-light navbar-bg">
-      <Link className="sidebar-toggle js-sidebar-toggle"  onClick={handleToggle}>
+      <Link className="sidebar-toggle js-sidebar-toggle" onClick={handleToggle}>
         <i className="hamburger align-self-center"></i>
       </Link>
 
       <div className="navbar-collapse collapse">
         <ul className="navbar-nav navbar-align">
-         
+          <li><span>Limit : {auth?.currentUser?.limit} </span></li>
           <li className="nav-item dropdown">
-            <Link className="nav-link dropdown-toggle d-none d-sm-inline-block" 
+            <Link className="nav-link dropdown-toggle d-none d-sm-inline-block"
               data-bs-toggle="dropdown" to="/profile">
               <img src={userPic} className="avatar img-fluid rounded-circle me-1"
                 alt={auth?.currentUser?.name} /> <span className="text-dark">{auth?.currentUser?.name}</span>

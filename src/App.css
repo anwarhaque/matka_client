@@ -40,3 +40,157 @@ input[type='number']::-webkit-inner-spin-button {
   background-color: #007bff;
   color: white;
 }
+
+
+.keypad-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+
+  margin: 50px auto;
+}
+
+.btn-key {
+  width: 100% p !important;
+  padding: 20px !important;
+  font-size: 1.5rem !important;
+  color: white !important;
+  background-color: #333 !important;
+  border: 2px solid #ffcc00 !important;
+}
+
+.btn-clear {
+  background-color: #ff4d4d !important;
+  border: 2px solid #ffcc00 !important;
+}
+
+.btn-ok {
+  background-color: #4CAF50 !important;
+  border: 2px solid #ffcc00 !important;
+}
+
+
+.keypad-table {
+  margin: 0px auto;
+  border-collapse: separate;
+  text-indent: initial;
+  border-spacing: 6px;
+
+}
+
+.keypad {
+  background: #424242;
+  height: 67px;
+  width: 67px;
+  color: #fff;
+  font-size: 1.5em;
+  text-align: center;
+  border: 1px solid #DAA520;
+  border-radius: 4px;
+  font-family: Exo, sans-serif;
+  box-shadow: 3px 3px #DAA520;
+  cursor: pointer;
+}
+
+.keypad-clear {
+  background: #EE534F;
+  height: 67px;
+  width: 67px;
+  color: #fff;
+  font-size: 1.5em;
+  text-align: center;
+  border: 1px solid #DAA520;
+  border-radius: 4px;
+  font-family: Exo, sans-serif;
+  box-shadow: 3px 3px #DAA520;
+}
+
+.keypad-ok {
+  background: #398E3D;
+  height: 67px;
+  width: 67px;
+  color: #fff;
+  font-size: 1.5em;
+  text-align: center;
+  border: 1px solid #DAA520;
+  border-radius: 4px;
+  font-family: Exo, sans-serif;
+  box-shadow: 3px 3px #DAA520;
+}
+
+.keypad-num-input {
+  font-size: 1.5em;
+  width: 100%;
+  height: 40px;
+  font-family: Exo, sans-serif;
+  border-radius: 6px;
+  text-align: center;
+  font-weight: 900;
+}
+
+.keypad-amount-input {
+  font-size: 1.5em;
+  width: 100%;
+  height: 40px;
+  font-family: Exo, sans-serif;
+  border-radius: 6px;
+  text-align: center;
+  font-weight: 900;
+}
+
+
+.hover-input:focus {
+  background: #2196f3 !important;
+  font-size: 24px !important;
+  color: #000000;
+  font-weight: 900 !important;
+  
+}
+
+.hover-input {
+  font-size: 24px !important;
+  color: #000000;
+  font-weight: 900 !important;
+}
+
+.keypad-h3 {
+  text-align: center;
+  color: black;
+  font-family: Exo, sans-serif;
+  font-size: 1.3em;
+}
+
+.hours {
+  background: #424242;
+  padding: 7px;
+  margin: 3px;
+  color: #fff;
+  display: inline-block;
+  width: 30px;
+
+  padding: 6px;
+  line-height: 18px;
+}
+
+.min {
+  background: #424242;
+  padding: 7px;
+  margin: 3px;
+  color: #fff;
+  display: inline-block;
+  width: 30px;
+
+  padding: 6px;
+  line-height: 18px;
+}
+
+.second {
+  background: #424242;
+  padding: 6px;
+  line-height: 18px;
+  margin: 3px;
+  color: #fff;
+  display: inline-block;
+  width: 30px;
+
+}
