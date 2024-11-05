@@ -42,6 +42,9 @@ const PlayGame = () => {
       roundType
     }
 
+    if (amount == 0)
+      return
+
     console.log(createData);
 
     try {
@@ -126,7 +129,7 @@ const PlayGame = () => {
   }, [seconds]);
 
 
-  const handleDelete = async(gameId) => {
+  const handleDelete = async (gameId) => {
     try {
       const res = await Axios.delete(`/game/delete/${gameId}`);
       Notifier(res.meta.msg, 'Success')
@@ -235,7 +238,7 @@ const PlayGame = () => {
       <div className="col-12 col-lg-12 col-xxl-12 d-flex mt-4">
         <div className="card flex-fill">
           <div className="card-header">
-            <h5 className="card-title mb-0">Client List</h5>
+            <h5 className="card-title mb-0">Game List</h5>
           </div>
           <table className="table table-hover my-0">
             <thead>

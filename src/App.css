@@ -103,6 +103,7 @@ input[type='number']::-webkit-inner-spin-button {
   border-radius: 4px;
   font-family: Exo, sans-serif;
   box-shadow: 3px 3px #DAA520;
+  cursor: pointer;
 }
 
 .keypad-ok {
@@ -116,6 +117,23 @@ input[type='number']::-webkit-inner-spin-button {
   border-radius: 4px;
   font-family: Exo, sans-serif;
   box-shadow: 3px 3px #DAA520;
+  cursor: pointer;
+}
+
+.keypad:hover{
+  background: #5ca3dd;
+  box-shadow: 3px 3px #dfd8c7;
+  border: 1px solid #ddd8ca;
+}
+.keypad-ok:hover{
+  background: #5ca3dd;
+  box-shadow: 3px 3px #dfd8c7;
+  border: 1px solid #ddd8ca;
+}
+.keypad-clear:hover{
+  background: #5ca3dd;
+  box-shadow: 3px 3px #dfd8c7;
+  border: 1px solid #ddd8ca;
 }
 
 .keypad-num-input {
@@ -144,7 +162,6 @@ input[type='number']::-webkit-inner-spin-button {
   font-size: 24px !important;
   color: #000000;
   font-weight: 900 !important;
-  
 }
 
 .hover-input {
