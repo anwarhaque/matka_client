@@ -25,7 +25,7 @@ const PlayGame = () => {
 
     try {
 
-      const { data } = await Axios.get(`/game/list`);
+      const { data } = await Axios.get(`/game/list?drowId=${drowId}`);
       setGameList(data)
 
     } catch (err) {
@@ -39,7 +39,8 @@ const PlayGame = () => {
     const createData = {
       num: Number(num),
       amount: Number(amount),
-      roundType
+      roundType,
+      drowId
     }
 
     if (amount == 0)
