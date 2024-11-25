@@ -25,7 +25,12 @@ const PlayGame = () => {
 
     try {
 
-      const { data } = await Axios.get(`/game/list?drowId=${drowId}`);
+      const { data } = await Axios.get(`/game/list`, {
+        params: {
+          drowId,
+          roundType: roundType.toUpperCase()
+        }
+      });
       setGameList(data)
 
     } catch (err) {
@@ -35,7 +40,26 @@ const PlayGame = () => {
     }
   };
 
+  const isTimePassed = (hour, minute) => {
+    const now = new Date();
+    const targetTime = new Date();
+    targetTime.setHours(hour, minute, 0, 0); // Set target time (hours, minutes, seconds, ms)
+    // Compare the current time with the target time
+    if (now > targetTime) {
+      
+      return true; // Time has passed
+    } else {
+      
+      return false; // Time hasn't passed
+    }
+  }
   const handleOk = async () => {
+    const [hour, minute] = drow.openTime.split(':')
+    if (isTimePassed(hour, minute)) {
+      Notifier('Round is Lock', 'Error')
+      return  // Time has passed
+    }
+
     const createData = {
       num: Number(num),
       amount: Number(amount),
@@ -45,8 +69,6 @@ const PlayGame = () => {
 
     if (amount == 0)
       return
-
-    console.log(createData);
 
     try {
 
@@ -82,15 +104,21 @@ const PlayGame = () => {
       const { data } = await Axios.get(`/drow/details/${drowId}`);
       setDrow(data)
 
-      if (roundType == 'OPEN') {
+      if (roundType?.toUpperCase() == 'OPEN') {
         const [hour, minute] = data.openTime.split(':')
+        if (isTimePassed(hour, minute)) {
+          return  // Time has passed
+        }
 
         const remainingSec = calculateTimeRemaining(hour, minute)
         setSeconds(remainingSec)
 
       }
-      else if (roundType == 'CLOSE') {
+      else if (roundType?.toUpperCase() == 'CLOSE') {
         const [hour, minute] = data.closeTime.split(':')
+        if (isTimePassed(hour, minute)) {
+          return  // Time has passed
+        }
         const remainingSec = calculateTimeRemaining(hour, minute)
         setSeconds(remainingSec)
       }
@@ -113,14 +141,13 @@ const PlayGame = () => {
   useEffect(() => {
     getDrow();
     getListGame()
-    if (roundType != 'OPEN' && roundType != 'CLOSE') {
-      console.log(roundType);
+    if (roundType.toUpperCase() != 'OPEN' && roundType?.toUpperCase() != 'CLOSE') {
       navigate('../')
     }
   }, [drowId]);
 
   useEffect(() => {
-    if (seconds > 0) {
+    if (seconds >= 0) {
       const timerId = setTimeout(() => setSeconds(seconds - 1), 1000);
       setRemainingHours(Math.floor(seconds / 3600));
       setRemainingMinutes(Math.floor((seconds % 3600) / 60));
