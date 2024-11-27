@@ -28,10 +28,11 @@ export const AuthProvider = ({ children }) => {
 
     try {
       const res = await Axios.post('client/login', credentials); // Use the Axios instance
-     
-      
+
+
       if (res.meta.status && res.token) {
-        let userData = { token: res.token, ...res.data }
+
+        let userData = { token: res.token, ...res.data, limit: 0 }
         setIsAuthenticated(true);
         setCurrentUser(userData)
         localStorage.setItem('clientAuthToken', JSON.stringify(userData));
@@ -49,7 +50,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ currentUser, isAuthenticated, login, logout }}>
+    <AuthContext.Provider value={{ currentUser, isAuthenticated, login, logout, setCurrentUser }}>
       {children}
     </AuthContext.Provider>
   );

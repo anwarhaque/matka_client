@@ -1,7 +1,8 @@
-import React, {useEffect, useRef} from "react";
+import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import userPic from '../assets/img/user-pic.png';
+import Axios from "../api/Axios";
 
 const Header = () => {
 
@@ -15,11 +16,11 @@ const Header = () => {
     document.getElementById("sidebar").classList.toggle("collapsed");
   };
 
-  const auth = useAuth();
+  const { currentUser, setCurrentUser, logout } = useAuth();
 
   const handleLogout = (event) => {
     event.preventDefault();
-    auth.logout();
+    logout();
   };
 
   const handleClickOutside = (event) => {
@@ -35,6 +36,15 @@ const Header = () => {
     };
   }, []);
 
+  const getProfile = async () => {
+    const { data } = await Axios.get('client/getProfile'); // Use the Axios instance
+    setCurrentUser(data);
+  }
+
+  useEffect(() => {
+    getProfile()
+  }, []);
+
   return (
     <nav className="navbar navbar-expand navbar-light navbar-bg">
       <Link className="sidebar-toggle js-sidebar-toggle" onClick={handleToggle}>
@@ -43,14 +53,14 @@ const Header = () => {
 
       <div className="navbar-collapse collapse">
         <ul className="navbar-nav navbar-align">
-          <li><span>Limit : {auth?.currentUser?.limit} </span></li>
+          <li><span>Limit : {currentUser?.limit} </span></li>
           <li className="nav-item dropdown">
             <Link className="nav-link dropdown-toggle d-none d-sm-inline-block"
               data-bs-toggle="dropdown" to="#" onClick={handleDropDownToggle}>
               <img src={userPic} className="avatar img-fluid rounded-circle me-1"
-                alt={auth?.currentUser?.name} /> <span className="text-dark">{auth?.currentUser?.name}</span>
+                alt={currentUser?.name} /> <span className="text-dark">{currentUser?.name}</span>
             </Link>
-            <div className="dropdown-menu dropdown-menu-end" id="user-dropdown-menu"  ref={dropdownRef}>
+            <div className="dropdown-menu dropdown-menu-end" id="user-dropdown-menu" ref={dropdownRef}>
               <Link className="dropdown-item" to="/profile"><i className="align-middle me-1"
                 data-feather="user"></i> Profile</Link>
               <Link className="dropdown-item" to="/change-password"><i className="align-middle me-1"

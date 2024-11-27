@@ -29,7 +29,7 @@ const Login = () => {
                         <table>
                             <tbody>
                                 <tr>
-                                    <td className="form-icon">S</td>
+                                    <td className="form-icon">C</td>
                                     <td>
                                         <input
                                             className="md-input"

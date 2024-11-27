@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import Notifier from '../Notifier'
 import Axios from '../../api/Axios'
+import { useAuth } from '../../context/AuthContext'
 
 const PlayGame = () => {
 
@@ -18,6 +19,7 @@ const PlayGame = () => {
   const [amount, setAmount] = useState('')
   const [selectedField, setSelectedField] = useState('')
 
+  const { currentUser, setCurrentUser } = useAuth()
   const navigate = useNavigate()
 
 
@@ -46,10 +48,10 @@ const PlayGame = () => {
     targetTime.setHours(hour, minute, 0, 0); // Set target time (hours, minutes, seconds, ms)
     // Compare the current time with the target time
     if (now > targetTime) {
-      
+
       return true; // Time has passed
     } else {
-      
+
       return false; // Time hasn't passed
     }
   }
@@ -72,10 +74,13 @@ const PlayGame = () => {
 
     try {
 
-      const { data } = await Axios.post(`/game/add`, createData);
+      const { client } = await Axios.post(`/game/add`, createData);
+      setCurrentUser((pre) => ({ ...pre, limit: client.limit }))
       getListGame()
     } catch (err) {
-      Notifier(err.meta.msg, 'Error')
+      console.log(err);
+
+      Notifier(err?.meta?.msg, 'Error')
     }
 
   }
@@ -159,11 +164,12 @@ const PlayGame = () => {
 
   const handleDelete = async (gameId) => {
     try {
-      const res = await Axios.delete(`/game/delete/${gameId}`);
-      Notifier(res.meta.msg, 'Success')
+      const { meta, client } = await Axios.delete(`/game/delete/${gameId}`);
+      setCurrentUser((pre) => ({ ...pre, limit: client.limit }))
+      Notifier(meta?.msg, 'Success')
       getListGame()
     } catch (err) {
-      Notifier(err.meta.msg, 'Error')
+      Notifier(err?.meta?.msg, 'Error')
     }
 
   }
