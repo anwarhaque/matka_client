@@ -136,9 +136,19 @@ const PlayGame = () => {
   };
 
 
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('en-GB'); // en-GB formats the date as "dd/mm/yyyy"
+  const formatDate = (isoString) => {
+    const date = new Date(isoString);
+    const dd = String(date.getDate()).padStart(2, "0");
+    const mm = String(date.getMonth() + 1).padStart(2, "0"); // Months are 0-based
+    const yyyy = date.getFullYear();
+
+    const hh = String(date.getHours()).padStart(2, "0");
+    const min = String(date.getMinutes()).padStart(2, "0");
+    const ss = String(date.getSeconds()).padStart(2, "0");
+
+    return `${dd}/${mm}/${yyyy} ${hh}:${min}:${ss}`;
+    // const date = new Date(dateString);
+    // return date.toLocaleDateString('en-GB'); // en-GB formats the date as "dd/mm/yyyy"
   };
 
 
@@ -294,7 +304,7 @@ const PlayGame = () => {
                       <td>{index + 1}</td>
                       <td>{item.num} </td>
                       <td className="d-none d-xl-table-cell">{item.amount}</td>
-                      <td className="d-none d-xl-table-cell">{item.roundType}</td>
+                      <td className="d-none d-xl-table-cell">{item.gameType}</td>
                       <td className="d-none d-md-table-cell">{formatDate(item.lockTime)}</td>
                       <td>
                         <div style={{ display: "inline-flex" }}>
