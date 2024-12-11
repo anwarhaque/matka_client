@@ -74,9 +74,12 @@ const PlayGame = () => {
 
     try {
 
+      
       const { client } = await Axios.post(`/game/add`, createData);
       setCurrentUser((pre) => ({ ...pre, limit: client.limit }))
       getListGame()
+      setNum('')
+      setAmount('')
     } catch (err) {
       console.log(err);
 
