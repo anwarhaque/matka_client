@@ -112,9 +112,9 @@ const Report = () => {
                         <td>Cl.</td>
                         <td>T.</td>
                         <td>Op Amt</td>
-                        <td>Op</td>
+                        <td>Op T</td>
                         <td>Cl Amt</td>
-                        <td>Cl</td>
+                        <td>Cl T</td>
                         <td>T</td>
                         <td>Jd Amt</td>
                         <td>Jd</td>
@@ -148,16 +148,16 @@ const Report = () => {
                           <td>
                             {(
                               (value?.SINGLE_OPEN?.totalAmount || 0) +
-                              (value?.PATTI_OPEN?.totalAmount || 0 )+
+                              (value?.PATTI_OPEN?.totalAmount || 0) +
                               (value?.JODI_OPEN?.totalAmount || 0) +
                               (value?.SINGLE_CLOSE?.totalAmount || 0) +
                               (value?.PATTI_CLOSE?.totalAmount || 0)
                             )}
                           </td>
 
-                          <td>{value?.SINGLE_OPEN?.totalAmount || 0}</td>
+                          <td>{value?.SINGLE_OPEN?.passTotalAmount || 0}</td>
                           <td>{value?.SINGLE_OPEN?.totalResultAmount || 0}</td>
-                          <td>{value?.SINGLE_CLOSE?.totalAmount || 0}</td>
+                          <td>{value?.SINGLE_CLOSE?.passTotalAmount || 0}</td>
                           <td>{value?.SINGLE_CLOSE?.totalResultAmount || 0}</td>
                           <td>
                             {(
@@ -166,13 +166,13 @@ const Report = () => {
                             )}
                           </td>
 
-                          <td>{value?.JODI_OPEN?.totalAmount || 0}</td>
+                          <td>{value?.JODI_OPEN?.passTotalAmount || 0}</td>
                           <td>{value?.JODI_OPEN?.totalResultAmount || 0}</td>
                           <td>{value?.JODI_OPEN?.totalResultAmount || 0}</td>
 
-                          <td>{value?.PATTI_OPEN?.totalAmount || 0}</td>
+                          <td>{value?.PATTI_OPEN?.passTotalAmount || 0}</td>
                           <td>{value?.PATTI_OPEN?.totalResultAmount || 0}</td>
-                          <td>{value?.PATTI_CLOSE?.totalAmount || 0}</td>
+                          <td>{value?.PATTI_CLOSE?.passTotalAmount || 0}</td>
                           <td>{value?.PATTI_CLOSE?.totalResultAmount || 0}</td>
                           <td>
                             {
@@ -218,25 +218,230 @@ const Report = () => {
 
                       <tr className='text-bg-light'>
                         <td>Total</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
+                        <td>
+                          {
+                            Object.entries(item.groupedData).reduce(
+                              (acc, [key, value]) =>
+                                acc + (
+                                  (value?.SINGLE_OPEN?.totalAmount || 0) +
+                                  (value?.PATTI_OPEN?.totalAmount || 0) +
+                                  (value?.JODI_OPEN?.totalAmount || 0)
+                                ),
+                              0)
+                          }
+                        </td>
+                        <td>
+                          {
+                            Object.entries(item.groupedData).reduce(
+                              (acc, [key, value]) =>
+                                acc + (
+                                  (value?.SINGLE_CLOSE?.totalAmount || 0) +
+                                  (value?.PATTI_CLOSE?.totalAmount || 0)
+                                ),
+                              0)
+                          }
+                        </td>
+                        <td>
+                          {
+                            Object.entries(item.groupedData).reduce(
+                              (acc, [key, value]) =>
+                                acc + (
+                                  (value?.SINGLE_OPEN?.totalAmount || 0) +
+                                  (value?.PATTI_OPEN?.totalAmount || 0) +
+                                  (value?.JODI_OPEN?.totalAmount || 0) +
+                                  (value?.SINGLE_CLOSE?.totalAmount || 0) +
+                                  (value?.PATTI_CLOSE?.totalAmount || 0)
+                                ),
+                              0)
+                          }
+                        </td>
+
+
+                        <td>
+                          {
+                            Object.entries(item.groupedData).reduce(
+                              (acc, [key, value]) =>
+                                acc + (
+                                  (value?.SINGLE_OPEN?.passTotalAmount || 0)
+                                ),
+                              0)
+                          }
+                        </td>
+                        <td>
+                          {
+                            Object.entries(item.groupedData).reduce(
+                              (acc, [key, value]) =>
+                                acc + (
+                                  (value?.SINGLE_OPEN?.totalResultAmount || 0)
+                                ),
+                              0)
+                          }
+                        </td>
+                        <td>
+                          {
+                            Object.entries(item.groupedData).reduce(
+                              (acc, [key, value]) =>
+                                acc + (
+                                  (value?.SINGLE_CLOSE?.passTotalAmount || 0)
+                                ),
+                              0)
+                          }
+                        </td>
+                        <td>
+                          {
+                            Object.entries(item.groupedData).reduce(
+                              (acc, [key, value]) =>
+                                acc + (
+                                  (value?.SINGLE_CLOSE?.totalResultAmount || 0)
+                                ),
+                              0)
+                          }
+                        </td>
+                        <td>
+                          {
+                            Object.entries(item.groupedData).reduce(
+                              (acc, [key, value]) =>
+                                acc + (
+                                  (value?.SINGLE_OPEN?.totalResultAmount || 0) +
+                                  (value?.SINGLE_CLOSE?.totalResultAmount || 0)
+                                ),
+                              0)
+                          }
+                        </td>
+
+
+                        <td>
+                          {
+                            Object.entries(item.groupedData).reduce(
+                              (acc, [key, value]) =>
+                                acc + (
+                                  (value?.JODI_OPEN?.passTotalAmount || 0)
+                                ),
+                              0)
+                          }
+                        </td>
+                        <td>
+                          {
+                            Object.entries(item.groupedData).reduce(
+                              (acc, [key, value]) =>
+                                acc + (
+                                  (value?.JODI_OPEN?.totalResultAmount || 0)
+                                ),
+                              0)
+                          }
+                        </td>
+                        <td>
+                          {
+                            Object.entries(item.groupedData).reduce(
+                              (acc, [key, value]) =>
+                                acc + (
+                                  (value?.JODI_OPEN?.totalResultAmount || 0)
+                                ),
+                              0)
+                          }
+                        </td>
+
+
+                        <td>
+                          {
+                            Object.entries(item.groupedData).reduce(
+                              (acc, [key, value]) =>
+                                acc + (
+                                  (value?.PATTI_OPEN?.passTotalAmount || 0)
+                                ),
+                              0)
+                          }
+                        </td>
+                        <td>
+                          {
+                            Object.entries(item.groupedData).reduce(
+                              (acc, [key, value]) =>
+                                acc + (
+                                  (value?.PATTI_OPEN?.totalResultAmount || 0)
+                                ),
+                              0)
+                          }
+                        </td>
+                        <td>
+                          {
+                            Object.entries(item.groupedData).reduce(
+                              (acc, [key, value]) =>
+                                acc + (
+                                  (value?.PATTI_CLOSE?.passTotalAmount || 0)
+                                ),
+                              0)
+                          }
+                        </td>
+                        <td>
+                          {
+                            Object.entries(item.groupedData).reduce(
+                              (acc, [key, value]) =>
+                                acc + (
+                                  (value?.PATTI_CLOSE?.totalResultAmount || 0)
+                                ),
+                              0)
+                          }
+                        </td>
+                        <td>
+                          {
+                            Object.entries(item.groupedData).reduce(
+                              (acc, [key, value]) =>
+                                acc + (
+                                  (value?.PATTI_OPEN?.totalResultAmount || 0) +
+                                  (value?.PATTI_CLOSE?.totalResultAmount || 0)
+                                ),
+                              0)
+                          }
+                        </td>
+
+
+                        <td>
+                          {
+                            Object.entries(item.groupedData).reduce(
+                              (acc, [key, value]) =>
+                                acc + (
+                                  (value?.SINGLE_OPEN?.totalResultAmount || 0) +
+                                  (value?.SINGLE_CLOSE?.totalResultAmount || 0) +
+                                  (value?.JODI_OPEN?.totalResultAmount || 0) +
+                                  (value?.PATTI_OPEN?.totalResultAmount || 0) +
+                                  (value?.PATTI_CLOSE?.totalResultAmount || 0)
+                                ),
+                              0)
+                          }
+                        </td>
+                        <td>
+                          {
+                            Object.entries(item.groupedData).reduce(
+                              (acc, [key, value]) =>
+                                acc + (
+                                  (value?.SINGLE_OPEN?.totalClientCommAmount || 0) +
+                                  (value?.SINGLE_CLOSE?.totalClientCommAmount || 0) +
+                                  (value?.JODI_OPEN?.totalClientCommAmount || 0) +
+                                  (value?.PATTI_OPEN?.totalClientCommAmount || 0) +
+                                  (value?.PATTI_CLOSE?.totalClientCommAmount || 0)
+                                ),
+                              0)
+                          }
+                        </td>
+                        <td>
+                          {
+                            Object.entries(item.groupedData).reduce(
+                              (acc, [key, value]) =>
+                                acc + (
+                                  (value?.SINGLE_OPEN?.totalResultAmount || 0) +
+                                  (value?.SINGLE_CLOSE?.totalResultAmount || 0) +
+                                  (value?.JODI_OPEN?.totalResultAmount || 0) +
+                                  (value?.PATTI_OPEN?.totalResultAmount || 0) +
+                                  (value?.PATTI_CLOSE?.totalResultAmount || 0) +
+                                  (value?.SINGLE_OPEN?.totalClientCommAmount || 0) +
+                                  (value?.SINGLE_CLOSE?.totalClientCommAmount || 0) +
+                                  (value?.JODI_OPEN?.totalClientCommAmount || 0) +
+                                  (value?.PATTI_OPEN?.totalClientCommAmount || 0) +
+                                  (value?.PATTI_CLOSE?.totalClientCommAmount || 0)
+                                ),
+                              0)
+                          }
+                        </td>
                       </tr>
                     </React.Fragment>
                   ))
@@ -248,25 +453,323 @@ const Report = () => {
                 </tr>
                 <tr>
                   <td>Total</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>0</td>
+                  <td>
+                    {
+                      reports.reduce((acc, item) => acc + (
+
+                        Object.entries(item.groupedData).reduce(
+                          (acc, [key, value]) =>
+                            acc + (
+                              (value?.SINGLE_OPEN?.totalAmount || 0) +
+                              (value?.PATTI_OPEN?.totalAmount || 0) +
+                              (value?.JODI_OPEN?.totalAmount || 0)
+                            ),
+                          0)
+
+
+                      ), 0)
+                    }
+                  </td>
+                  <td>
+                    {
+                      reports.reduce((acc, item) => acc + (
+
+                        Object.entries(item.groupedData).reduce(
+                          (acc, [key, value]) =>
+                            acc + (
+                              (value?.SINGLE_CLOSE?.totalAmount || 0) +
+                              (value?.PATTI_CLOSE?.totalAmount || 0)
+                            ),
+                          0)
+
+
+                      ), 0)
+                    }
+                  </td>
+                  <td>
+                    {
+                      reports.reduce((acc, item) => acc + (
+
+                        Object.entries(item.groupedData).reduce(
+                          (acc, [key, value]) =>
+                            acc + (
+                              (value?.SINGLE_OPEN?.totalAmount || 0) +
+                              (value?.PATTI_OPEN?.totalAmount || 0) +
+                              (value?.JODI_OPEN?.totalAmount || 0) +
+                              (value?.SINGLE_CLOSE?.totalAmount || 0) +
+                              (value?.PATTI_CLOSE?.totalAmount || 0)
+                            ),
+                          0)
+
+
+                      ), 0)
+                    }
+                  </td>
+
+                  <td>
+                    {
+                      reports.reduce((acc, item) => acc + (
+
+                        Object.entries(item.groupedData).reduce(
+                          (acc, [key, value]) =>
+                            acc + (
+                              (value?.SINGLE_OPEN?.passTotalAmount || 0)
+                            ),
+                          0)
+
+
+                      ), 0)
+                    }
+                  </td>
+                  <td>
+                    {
+                      reports.reduce((acc, item) => acc + (
+
+                        Object.entries(item.groupedData).reduce(
+                          (acc, [key, value]) =>
+                            acc + (
+                              (value?.SINGLE_OPEN?.totalResultAmount || 0)
+                            ),
+                          0)
+
+
+                      ), 0)
+                    }
+                  </td>
+                  <td>
+                    {
+                      reports.reduce((acc, item) => acc + (
+
+                        Object.entries(item.groupedData).reduce(
+                          (acc, [key, value]) =>
+                            acc + (
+                              (value?.SINGLE_CLOSE?.passTotalAmount || 0)
+                            ),
+                          0)
+
+
+                      ), 0)
+                    }
+                  </td>
+                  <td>
+                    {
+                      reports.reduce((acc, item) => acc + (
+
+                        Object.entries(item.groupedData).reduce(
+                          (acc, [key, value]) =>
+                            acc + (
+                              (value?.SINGLE_CLOSE?.totalResultAmount || 0)
+                            ),
+                          0)
+
+
+                      ), 0)
+                    }
+                  </td>
+                  <td>
+                    {
+                      reports.reduce((acc, item) => acc + (
+
+                        Object.entries(item.groupedData).reduce(
+                          (acc, [key, value]) =>
+                            acc + (
+                              (value?.SINGLE_OPEN?.totalResultAmount || 0) +
+                              (value?.SINGLE_CLOSE?.totalResultAmount || 0)
+                            ),
+                          0)
+
+
+                      ), 0)
+                    }
+                  </td>
+
+
+                  <td>
+                    {
+                      reports.reduce((acc, item) => acc + (
+
+                        Object.entries(item.groupedData).reduce(
+                          (acc, [key, value]) =>
+                            acc + (
+                              (value?.JODI_OPEN?.passTotalAmount || 0)
+                            ),
+                          0)
+
+
+                      ), 0)
+                    }
+                  </td>
+                  <td>
+                    {
+                      reports.reduce((acc, item) => acc + (
+
+                        Object.entries(item.groupedData).reduce(
+                          (acc, [key, value]) =>
+                            acc + (
+                              (value?.JODI_OPEN?.totalResultAmount || 0)
+                            ),
+                          0)
+
+
+                      ), 0)
+                    }
+                  </td>
+                  <td>
+                    {
+                      reports.reduce((acc, item) => acc + (
+
+                        Object.entries(item.groupedData).reduce(
+                          (acc, [key, value]) =>
+                            acc + (
+                              (value?.JODI_OPEN?.totalResultAmount || 0)
+                            ),
+                          0)
+
+
+                      ), 0)
+                    }
+                  </td>
+
+                  <td>
+                    {
+                      reports.reduce((acc, item) => acc + (
+
+                        Object.entries(item.groupedData).reduce(
+                          (acc, [key, value]) =>
+                            acc + (
+                              (value?.PATTI_OPEN?.passTotalAmount || 0)
+                            ),
+                          0)
+
+
+                      ), 0)
+                    }
+                  </td>
+                  <td>
+                    {
+                      reports.reduce((acc, item) => acc + (
+
+                        Object.entries(item.groupedData).reduce(
+                          (acc, [key, value]) =>
+                            acc + (
+                              (value?.PATTI_OPEN?.totalResultAmount || 0)
+                            ),
+                          0)
+
+
+                      ), 0)
+                    }
+                  </td>
+                  <td>
+                    {
+                      reports.reduce((acc, item) => acc + (
+
+                        Object.entries(item.groupedData).reduce(
+                          (acc, [key, value]) =>
+                            acc + (
+                              (value?.PATTI_CLOSE?.passTotalAmount || 0)
+                            ),
+                          0)
+
+
+                      ), 0)
+                    }
+                  </td>
+                  <td>
+                    {
+                      reports.reduce((acc, item) => acc + (
+
+                        Object.entries(item.groupedData).reduce(
+                          (acc, [key, value]) =>
+                            acc + (
+                              (value?.PATTI_CLOSE?.totalResultAmount || 0)
+                            ),
+                          0)
+
+
+                      ), 0)
+                    }
+                  </td>
+                  <td>
+                    {
+                      reports.reduce((acc, item) => acc + (
+
+                        Object.entries(item.groupedData).reduce(
+                          (acc, [key, value]) =>
+                            acc + (
+                              (value?.PATTI_OPEN?.totalResultAmount || 0) +
+                              (value?.PATTI_CLOSE?.totalResultAmount || 0)
+                            ),
+                          0)
+
+
+                      ), 0)
+                    }
+                  </td>
+
+
+                  <td>
+                    {
+                      reports.reduce((acc, item) => acc + (
+
+                        Object.entries(item.groupedData).reduce(
+                          (acc, [key, value]) =>
+                            acc + (
+                              (value?.SINGLE_OPEN?.totalResultAmount || 0) +
+                              (value?.SINGLE_CLOSE?.totalResultAmount || 0) +
+                              (value?.JODI_OPEN?.totalResultAmount || 0) +
+                              (value?.PATTI_OPEN?.totalResultAmount || 0) +
+                              (value?.PATTI_CLOSE?.totalResultAmount || 0)
+                            ),
+                          0)
+
+
+                      ), 0)
+                    }
+                  </td>
+                  <td>
+                    {
+                      reports.reduce((acc, item) => acc + (
+
+                        Object.entries(item.groupedData).reduce(
+                          (acc, [key, value]) =>
+                            acc + (
+                              (value?.SINGLE_OPEN?.totalClientCommAmount || 0) +
+                              (value?.SINGLE_CLOSE?.totalClientCommAmount || 0) +
+                              (value?.JODI_OPEN?.totalClientCommAmount || 0) +
+                              (value?.PATTI_OPEN?.totalClientCommAmount || 0) +
+                              (value?.PATTI_CLOSE?.totalClientCommAmount || 0)
+                            ),
+                          0)
+
+
+                      ), 0)
+                    }
+                  </td>
+                  <td>
+                    {
+                      reports.reduce((acc, item) => acc + (
+
+                        Object.entries(item.groupedData).reduce(
+                          (acc, [key, value]) =>
+                            acc + (
+                              (value?.SINGLE_OPEN?.totalResultAmount || 0) +
+                              (value?.SINGLE_CLOSE?.totalResultAmount || 0) +
+                              (value?.JODI_OPEN?.totalResultAmount || 0) +
+                              (value?.PATTI_OPEN?.totalResultAmount || 0) +
+                              (value?.PATTI_CLOSE?.totalResultAmount || 0) +
+                              (value?.SINGLE_OPEN?.totalClientCommAmount || 0) +
+                              (value?.SINGLE_CLOSE?.totalClientCommAmount || 0) +
+                              (value?.JODI_OPEN?.totalClientCommAmount || 0) +
+                              (value?.PATTI_OPEN?.totalClientCommAmount || 0) +
+                              (value?.PATTI_CLOSE?.totalClientCommAmount || 0)
+                            ),
+                          0)
+
+
+                      ), 0)
+                    }
+                  </td>
                 </tr>
               </tbody>
             </table>
