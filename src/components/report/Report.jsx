@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import Notifier from '../Notifier';
 import Axios from '../../api/Axios';
 
@@ -7,9 +7,10 @@ const Report = () => {
 
 
   const [drowList, setDrowList] = useState([]);
+  const [reports, setReports] = useState([]);
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
-  const [drow, setDrow] = useState('');
+  const [drowId, setDrowId] = useState('');
 
 
   const getDrowList = async () => {
@@ -28,7 +29,7 @@ const Report = () => {
     const query = {
       startDate,
       endDate,
-      drow
+      drowId
     }
 
     console.log(query);
@@ -37,6 +38,7 @@ const Report = () => {
 
       const { data } = await Axios.get('/report/list', { params: query });
       console.log(data);
+      setReports(data)
 
     } catch (err) {
       Notifier(err?.meta?.msg, 'Error')
@@ -72,7 +74,7 @@ const Report = () => {
                       required />
                   </div>
                   <div className="col">
-                    <select className="form-select" onChange={(event) => setDrow(event.target.value)} >
+                    <select className="form-select" onChange={(event) => setDrowId(event.target.value)} >
                       <option value="" >Drow</option>
                       {
                         drowList.map((item) => (
@@ -92,185 +94,181 @@ const Report = () => {
 
 
 
-            <table class="table table-sm table-bordered table-responsive">
-              
+            <table className="table table-sm table-bordered table-responsive">
+              <tbody>
+                {
+                  reports.map((item, index) => (
+                    <React.Fragment key={index}>
+                      <tr className="text-center text-bg-success">
+                        <th colSpan="4">{item.drow.name}</th>
+                        <th colSpan="5">Single</th>
+                        <th colSpan="3">Jodi</th>
+                        <th colSpan="5">Patti</th>
+                        <th colSpan="3">Net</th>
+                      </tr>
+                      <tr className='text-bg-light'>
+                        <td>Dt.</td>
+                        <td>Op.</td>
+                        <td>Cl.</td>
+                        <td>T.</td>
+                        <td>Op Amt</td>
+                        <td>Op</td>
+                        <td>Cl Amt</td>
+                        <td>Cl</td>
+                        <td>T</td>
+                        <td>Jd Amt</td>
+                        <td>Jd</td>
+                        <td>T</td>
+                        <td>Op Amt</td>
+                        <td>Op</td>
+                        <td>Cl Amt</td>
+                        <td>Cl</td>
+                        <td>T</td>
+                        <td>Payout</td>
+                        <td>Comm</td>
+                        <td>Bal</td>
+                      </tr>
+                      {Object.entries(item.groupedData).map(([key, value]) => (
 
-                <tbody>
-                  <>
-                    <tr>
-                      <th scope="col" colspan="4">Drow Name</th>
-                      <th scope="col" colspan="5">Single</th>
-                      <th scope="col" colspan="3">Jodi</th>
-                      <th scope="col" colspan="5">Patti</th>
-                      <th scope="col" colspan="3">Net</th>
-                    </tr>
-                    <tr>
-                      <td scope="col">Dt.</td>
-                      <td scope="col">Op.</td>
-                      <td scope="col">Cl.</td>
-                      <td scope="col">T.</td>
-                      <td scope="col">Op Amt</td>
-                      <td scope="col">Op</td>
-                      <td scope="col">Cl Amt</td>
-                      <td scope="col">Cl</td>
-                      <td scope="col">T</td>
-                      <td scope="col">Jd Amt</td>
-                      <td scope="col">Jd</td>
-                      <td scope="col">T</td>
-                      <td scope="col">Op Amt</td>
-                      <td scope="col">Op</td>
-                      <td scope="col">Cl Amt</td>
-                      <td scope="col">Cl</td>
-                      <td scope="col">T</td>
-                      <td scope="col">Payout</td>
-                      <td scope="col">Comm</td>
-                      <td scope="col">Bal</td>
-                    </tr>
-                    <tr>
-                      <td scope="col">11-12-2024</td>
-                      <td scope="col">10</td>
-                      <td scope="col">90</td>
-                      <td scope="col">90</td>
-                      <td scope="col">10</td>
-                      <td scope="col">90</td>
-                      <td scope="col">20</td>
-                      <td scope="col">180</td>
-                      <td scope="col">100</td>
-                      <td scope="col">10</td>
-                      <td scope="col">90</td>
-                      <td scope="col">90</td>
-                      <td scope="col">10</td>
-                      <td scope="col">100</td>
-                      <td scope="col">100</td>
-                      <td scope="col">10</td>
-                      <td scope="col">10</td>
-                      <td scope="col">100</td>
-                      <td scope="col">100</td>
-                      <td scope="col">100</td>
-                    </tr>
-                    <tr>
-                      <td scope="col">Total</td>
-                      <td scope="col">10</td>
-                      <td scope="col">90</td>
-                      <td scope="col">90</td>
-                      <td scope="col">10</td>
-                      <td scope="col">90</td>
-                      <td scope="col">20</td>
-                      <td scope="col">180</td>
-                      <td scope="col">100</td>
-                      <td scope="col">10</td>
-                      <td scope="col">90</td>
-                      <td scope="col">90</td>
-                      <td scope="col">10</td>
-                      <td scope="col">100</td>
-                      <td scope="col">100</td>
-                      <td scope="col">10</td>
-                      <td scope="col">10</td>
-                      <td scope="col">100</td>
-                      <td scope="col">100</td>
-                      <td scope="col">100</td>
-                    </tr>
-                    <tr>
-                      <th scope="col" colspan="4">Drow Name</th>
-                      <th scope="col" colspan="5">Single</th>
-                      <th scope="col" colspan="3">Jodi</th>
-                      <th scope="col" colspan="5">Patti</th>
-                      <th scope="col" colspan="3">Net</th>
-                    </tr>
-                    <tr>
-                      <td scope="col">Dt.</td>
-                      <td scope="col">Op.</td>
-                      <td scope="col">Cl.</td>
-                      <td scope="col">T.</td>
-                      <td scope="col">Op Amt</td>
-                      <td scope="col">Op</td>
-                      <td scope="col">Cl Amt</td>
-                      <td scope="col">Cl</td>
-                      <td scope="col">T</td>
-                      <td scope="col">Jd Amt</td>
-                      <td scope="col">Jd</td>
-                      <td scope="col">T</td>
-                      <td scope="col">Op Amt</td>
-                      <td scope="col">Op</td>
-                      <td scope="col">Cl Amt</td>
-                      <td scope="col">Cl</td>
-                      <td scope="col">T</td>
-                      <td scope="col">Payout</td>
-                      <td scope="col">Comm</td>
-                      <td scope="col">Bal</td>
-                    </tr>
-                    <tr>
-                      <td scope="col">11-12-2024</td>
-                      <td scope="col">10</td>
-                      <td scope="col">90</td>
-                      <td scope="col">90</td>
-                      <td scope="col">10</td>
-                      <td scope="col">90</td>
-                      <td scope="col">20</td>
-                      <td scope="col">180</td>
-                      <td scope="col">100</td>
-                      <td scope="col">10</td>
-                      <td scope="col">90</td>
-                      <td scope="col">90</td>
-                      <td scope="col">10</td>
-                      <td scope="col">100</td>
-                      <td scope="col">100</td>
-                      <td scope="col">10</td>
-                      <td scope="col">10</td>
-                      <td scope="col">100</td>
-                      <td scope="col">100</td>
-                      <td scope="col">100</td>
-                    </tr>
-                    <tr>
-                      <td scope="col">Total</td>
-                      <td scope="col">10</td>
-                      <td scope="col">90</td>
-                      <td scope="col">90</td>
-                      <td scope="col">10</td>
-                      <td scope="col">90</td>
-                      <td scope="col">20</td>
-                      <td scope="col">180</td>
-                      <td scope="col">100</td>
-                      <td scope="col">10</td>
-                      <td scope="col">90</td>
-                      <td scope="col">90</td>
-                      <td scope="col">10</td>
-                      <td scope="col">100</td>
-                      <td scope="col">100</td>
-                      <td scope="col">10</td>
-                      <td scope="col">10</td>
-                      <td scope="col">100</td>
-                      <td scope="col">100</td>
-                      <td scope="col">100</td>
-                    </tr>
-                  </>
+                        <tr key={key}>
+                          <td>{key}</td>
+                          <td>
+                            {
+                              (value?.SINGLE_OPEN?.totalAmount || 0) +
+                              (value?.PATTI_OPEN?.totalAmount || 0) +
+                              (value?.JODI_OPEN?.totalAmount || 0)
+                            }
+                          </td>
+                          <td>
+                            {(
+                              (value?.SINGLE_CLOSE?.totalAmount || 0) +
+                              (value?.PATTI_CLOSE?.totalAmount || 0)
+                            )}
+                          </td>
+                          <td>
+                            {(
+                              (value?.SINGLE_OPEN?.totalAmount || 0) +
+                              (value?.PATTI_OPEN?.totalAmount || 0 )+
+                              (value?.JODI_OPEN?.totalAmount || 0) +
+                              (value?.SINGLE_CLOSE?.totalAmount || 0) +
+                              (value?.PATTI_CLOSE?.totalAmount || 0)
+                            )}
+                          </td>
 
-                  <tr>
-                    <td scope='col' colspan="20">&nbsp;</td>
-                  </tr>
-                  <tr>
-                    <td scope="col">Total</td>
-                    <td scope="col">10</td>
-                    <td scope="col">90</td>
-                    <td scope="col">90</td>
-                    <td scope="col">10</td>
-                    <td scope="col">90</td>
-                    <td scope="col">20</td>
-                    <td scope="col">180</td>
-                    <td scope="col">100</td>
-                    <td scope="col">10</td>
-                    <td scope="col">90</td>
-                    <td scope="col">90</td>
-                    <td scope="col">10</td>
-                    <td scope="col">100</td>
-                    <td scope="col">100</td>
-                    <td scope="col">10</td>
-                    <td scope="col">10</td>
-                    <td scope="col">100</td>
-                    <td scope="col">100</td>
-                    <td scope="col">100</td>
-                  </tr>
-                </tbody>
+                          <td>{value?.SINGLE_OPEN?.totalAmount || 0}</td>
+                          <td>{value?.SINGLE_OPEN?.totalResultAmount || 0}</td>
+                          <td>{value?.SINGLE_CLOSE?.totalAmount || 0}</td>
+                          <td>{value?.SINGLE_CLOSE?.totalResultAmount || 0}</td>
+                          <td>
+                            {(
+                              (value?.SINGLE_OPEN?.totalResultAmount || 0) +
+                              (value?.SINGLE_CLOSE?.totalResultAmount || 0)
+                            )}
+                          </td>
+
+                          <td>{value?.JODI_OPEN?.totalAmount || 0}</td>
+                          <td>{value?.JODI_OPEN?.totalResultAmount || 0}</td>
+                          <td>{value?.JODI_OPEN?.totalResultAmount || 0}</td>
+
+                          <td>{value?.PATTI_OPEN?.totalAmount || 0}</td>
+                          <td>{value?.PATTI_OPEN?.totalResultAmount || 0}</td>
+                          <td>{value?.PATTI_CLOSE?.totalAmount || 0}</td>
+                          <td>{value?.PATTI_CLOSE?.totalResultAmount || 0}</td>
+                          <td>
+                            {
+                              (value?.PATTI_OPEN?.totalResultAmount || 0) +
+                              (value?.PATTI_CLOSE?.totalResultAmount || 0)
+                            }
+                          </td>
+
+                          <td>
+                            {
+                              (value?.SINGLE_OPEN?.totalResultAmount || 0) +
+                              (value?.SINGLE_CLOSE?.totalResultAmount || 0) +
+                              (value?.JODI_OPEN?.totalResultAmount || 0) +
+                              (value?.PATTI_OPEN?.totalResultAmount || 0) +
+                              (value?.PATTI_CLOSE?.totalResultAmount || 0)
+                            }
+                          </td>
+                          <td>
+                            {
+                              (value?.SINGLE_OPEN?.totalClientCommAmount || 0) +
+                              (value?.SINGLE_CLOSE?.totalClientCommAmount || 0) +
+                              (value?.JODI_OPEN?.totalClientCommAmount || 0) +
+                              (value?.PATTI_OPEN?.totalClientCommAmount || 0) +
+                              (value?.PATTI_CLOSE?.totalClientCommAmount || 0)
+                            }
+                          </td>
+                          <td>
+                            {
+                              (value?.SINGLE_OPEN?.totalResultAmount || 0) +
+                              (value?.SINGLE_CLOSE?.totalResultAmount || 0) +
+                              (value?.JODI_OPEN?.totalResultAmount || 0) +
+                              (value?.PATTI_OPEN?.totalResultAmount || 0) +
+                              (value?.PATTI_CLOSE?.totalResultAmount || 0) +
+                              (value?.SINGLE_OPEN?.totalClientCommAmount || 0) +
+                              (value?.SINGLE_CLOSE?.totalClientCommAmount || 0) +
+                              (value?.JODI_OPEN?.totalClientCommAmount || 0) +
+                              (value?.PATTI_OPEN?.totalClientCommAmount || 0) +
+                              (value?.PATTI_CLOSE?.totalClientCommAmount || 0)
+                            }
+                          </td>
+                        </tr>
+                      ))}
+
+                      <tr className='text-bg-light'>
+                        <td>Total</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                      </tr>
+                    </React.Fragment>
+                  ))
+                }
+
+
+                <tr>
+                  <td scope='col' colSpan="20">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td>Total</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+                </tr>
+              </tbody>
             </table>
 
           </div>
