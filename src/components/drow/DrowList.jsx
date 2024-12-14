@@ -10,10 +10,16 @@ const DrowList = () => {
     const [loading, setLoading] = useState(true);
 
 
+    const getPattiToNum = (patti) => {
+
+        const sum = patti.split('').reduce((acc, digit) => acc + parseInt(digit), 0);
+        return sum % 10;
+    }
+
     const getDrowList = async () => {
 
         try {
-            
+
             const { data } = await Axios.get('/drow/list', {
                 params: {
                     status: "ACTIVE"
@@ -49,7 +55,27 @@ const DrowList = () => {
                                     <div className="row ">
                                         <div className="d-flex justify-content-between h4">
                                             <span >{convertTimeTo12HourFormat(item.openTime)}</span>
-                                            <span > -XX-</span>
+                                            {!item?.todaysGameResults && (
+                                                <span className="result-patti">
+                                                    <span className="dash">---</span>
+                                                    <span className="result-number">XX</span>
+                                                    <span className="dash">---</span>
+                                                </span>
+                                            )}
+                                            {item?.todaysGameResults && (
+
+                                                <span className="result-patti">
+                                                    <span className="dash">{item?.todaysGameResults?.openPatti || '---'}</span>
+                                                    <span className="result-number">
+                                                    {item?.todaysGameResults?.openPatti ? getPattiToNum(item?.todaysGameResults?.openPatti) : 'X'}
+                                                    {item?.todaysGameResults?.closePatti ? getPattiToNum(item?.todaysGameResults?.closePatti) : 'X'}
+                                                    </span>
+                                                        
+                                                    <span className="dash">{item?.todaysGameResults?.closePatti ? item?.todaysGameResults?.closePatti : '---'}</span>
+                                                </span>
+
+                                            )}
+
                                             <span >{convertTimeTo12HourFormat(item.closeTime)}</span>
                                         </div>
                                     </div>

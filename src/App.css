@@ -211,3 +211,21 @@ input[type='number']::-webkit-inner-spin-button {
   width: 30px;
 
 }
+
+.result-patti {
+  display: flex;
+  align-items: center;
+  font-family: Arial, sans-serif; /* Optional for consistency */
+}
+
+.result-number {
+  font-size: 2rem; /* Increase size of XX */
+  font-weight: bold; /* Make XX bold if needed */
+  line-height: 1; /* Ensure the text height is consistent */
+}
+
+.dash {
+  font-size: 1rem; /* Adjust size of dashes to your preference */
+  display: flex;
+  align-items: center;
+}
