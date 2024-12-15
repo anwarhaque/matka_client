@@ -15,6 +15,7 @@ import PlayGame from './components/drow/PlayGame';
 import Game from './components/drow/Game';
 import Report from './components/report/Report';
 import Ledger from './components/ledger/Ledger';
+import Display from './components/display/Display';
 function App() {
 
   return (
@@ -30,7 +31,7 @@ function App() {
             <Route path="profile" element={<Profile />} />
             <Route path="change-password" element={<ChangePassword />} />
             <Route path="report" element={<Report />} />
-            <Route path="ledger" element={<Ledger />} />
+            <Route path="display" element={<Display />} />
           </Route>
         </Routes>
         <ToastContainer /> {/* Add ToastContainer here to display toasts globally */}

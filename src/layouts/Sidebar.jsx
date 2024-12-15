@@ -25,9 +25,9 @@ const Sidebar = () => {
               <i className="align-middle" data-feather="user"></i> <span className="align-middle">Report</span>
             </Link>
           </li>
-          <li className={`sidebar-item ${isActive("/ledger") ? "active" : ""}`}>
-            <Link className="sidebar-link" to="/ledger">
-              <i className="align-middle" data-feather="user"></i> <span className="align-middle">Ledger</span>
+          <li className={`sidebar-item ${isActive("/display") ? "active" : ""}`}>
+            <Link className="sidebar-link" to="/display">
+              <i className="align-middle" data-feather="user"></i> <span className="align-middle">Display</span>
             </Link>
           </li>
 
