@@ -32,12 +32,12 @@ const Report = () => {
       drowId
     }
 
-    console.log(query);
+   
 
     try {
 
       const { data } = await Axios.get('/report/list', { params: query });
-      console.log(data);
+     
       setReports(data)
 
     } catch (err) {
