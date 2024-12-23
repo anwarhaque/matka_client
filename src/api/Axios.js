@@ -4,7 +4,7 @@ import Notifier from '../components/Notifier';
 
 const Axios = axios.create({
   // baseURL: 'http://localhost:3000/v1/api', // Replace with your actual API base URL
-  baseURL: 'http://http://13.202.210.159/v1/api', // Replace with your actual API base URL
+  baseURL: 'http://13.202.210.159/v1/api', // Replace with your actual API base URL
   headers: {
     'Content-Type': 'application/json',
   },
