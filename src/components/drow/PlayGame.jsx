@@ -292,9 +292,9 @@ const PlayGame = () => {
               <tr>
                 <th>S.N.</th>
                 <th>Number</th>
-                <th className="d-none d-xl-table-cell">Amount</th>
-                <th className="d-none d-xl-table-cell">Type</th>
-                <th className="d-none d-xl-table-cell">Details</th>
+                <th>Amount</th>
+                <th>Type</th>
+                <th>Details</th>
                 <th>Action</th>
 
               </tr>
@@ -306,9 +306,9 @@ const PlayGame = () => {
                     <tr key={item._id}>
                       <td>{index + 1}</td>
                       <td>{item.num} </td>
-                      <td className="d-none d-xl-table-cell">{item.amount}</td>
-                      <td className="d-none d-xl-table-cell">{item.gameType}</td>
-                      <td className="d-none d-md-table-cell">{formatDate(item.lockTime)}</td>
+                      <td>{item.amount}</td>
+                      <td>{item.gameType}</td>
+                      <td>{formatDate(item.lockTime)}</td>
                       <td>
                         <div style={{ display: "inline-flex" }}>
                           <Link to={`#`} onClick={() => handleDelete(item._id)}><i className="fa fa-trash" style={{ color: 'red' }}></i></Link>
