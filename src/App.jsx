@@ -14,7 +14,6 @@ import DrowList from './components/drow/DrowList';
 import PlayGame from './components/drow/PlayGame';
 import Game from './components/drow/Game';
 import Report from './components/report/Report';
-import Ledger from './components/ledger/Ledger';
 import Display from './components/display/Display';
 function App() {
 
