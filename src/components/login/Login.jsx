@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import "./Login.css";
 import { useAuth } from '../../context/AuthContext';
-import Notifier from '../Notifier';
+import BG from '../../assets/img/bg.jpg';
+import logoImg from '../../assets/img/logo_img.png';
 
 const Login = () => {
     const [userName, setUserName] = useState("");
@@ -17,12 +18,12 @@ const Login = () => {
     return (
         <div
             className="login_page_wrapper"
-            style={{ backgroundImage: "url(/img/bg.jpg" }}
+            style={{ backgroundImage: `url(${BG})` }}
         >
             <div id="login_card">
                 <div className="md-card-content large-padding" id="login_form">
                     <div className="login_heading">
-                        <img src="/img/logo_img.png" alt="Logo" />
+                        <img src={logoImg} alt="Logo" />
                     </div>
                     <form onSubmit={handleLogin} acceptCharset="utf-8">
                         <div className="uk-form-row"></div>
