@@ -43,6 +43,7 @@ const PlayGame = () => {
   };
 
   const isTimePassed = (hour, minute) => {
+    // debugger
     const now = new Date();
     const targetTime = new Date();
     targetTime.setHours(hour, minute, 0, 0); // Set target time (hours, minutes, seconds, ms)
@@ -56,8 +57,8 @@ const PlayGame = () => {
     }
   }
   const handleOk = async () => {
-    const [hour, minute] = drow.openTime.split(':')
-    if (isTimePassed(hour, minute)) {
+   
+    if (seconds<=0) {
       Notifier('Round is Lock', 'Error')
       return  // Time has passed
     }
@@ -286,6 +287,7 @@ const PlayGame = () => {
         <div className="card flex-fill">
           <div className="card-header">
             <h5 className="card-title mb-0">Game List</h5>
+            <h5 className="card-title mb-0 pull-right">Total:{gameList.reduce((acc,item)=>acc+item.amount,0)}</h5>
           </div>
           <table className="table table-hover my-0">
             <thead>
