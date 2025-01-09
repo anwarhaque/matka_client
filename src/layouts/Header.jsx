@@ -16,12 +16,8 @@ const Header = () => {
     document.getElementById("sidebar").classList.toggle("collapsed");
   };
 
-  const { currentUser, setCurrentUser, logout } = useAuth();
+  const { currentUser, setCurrentUser } = useAuth();
 
-  const handleLogout = (event) => {
-    event.preventDefault();
-    logout();
-  };
 
   const handleClickOutside = (event) => {
     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -50,25 +46,12 @@ const Header = () => {
       <Link className="sidebar-toggle js-sidebar-toggle" onClick={handleToggle}>
         <i className="hamburger align-self-center"></i>
       </Link>
-
       <div className="navbar-collapse collapse">
         <ul className="navbar-nav navbar-align">
-          <li><span>Limit : {currentUser?.limit} </span></li>
-          <li className="nav-item dropdown">
-            <Link className="nav-link dropdown-toggle d-none d-sm-inline-block"
-              data-bs-toggle="dropdown" to="#" onClick={handleDropDownToggle}>
-              <img src={userPic} className="avatar img-fluid rounded-circle me-1"
-                alt={currentUser?.name} /> <span className="text-dark">{currentUser?.name}</span>
-            </Link>
-            <div className="dropdown-menu dropdown-menu-end" id="user-dropdown-menu" ref={dropdownRef}>
-              <Link className="dropdown-item" to="/profile"><i className="align-middle me-1"
-                data-feather="user"></i> Profile</Link>
-              <Link className="dropdown-item" to="/change-password"><i className="align-middle me-1"
-                data-feather="pie-chart"></i> Change Password</Link>
-              <div className="dropdown-divider"></div>
-              <Link className="dropdown-item" onClick={handleLogout}>Log out</Link>
-            </div>
-          </li>
+          <div className="mt-2">
+            <span>{currentUser?.userName} {currentUser?.name}</span>
+            <span className="mx-3"><b>Limit : {currentUser?.limit} </b></span>
+          </div>
         </ul>
       </div>
     </nav>
