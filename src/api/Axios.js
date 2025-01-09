@@ -35,10 +35,10 @@ Axios.interceptors.response.use(
       if (error.response.status === 401) {
         // Handle unauthorized error (e.g., redirect to login or refresh token)
         // You can clear token and redirect to login
-        localStorage.removeItem('authToken');
+        localStorage.removeItem('clientAuthToken');
         window.location.href = '/login'; // Redirect to login page
       }
-console.log(error);
+
 
       if(error.response.data.message){
         Notifier(error.response.data.message, 'Error')
