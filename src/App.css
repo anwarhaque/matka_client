@@ -229,3 +229,17 @@ input[type='number']::-webkit-inner-spin-button {
   display: flex;
   align-items: center;
 }
+
+tr:nth-child(even) {
+  background-color: #e9e8e8;
+}
+
+.bg-red{
+  background-color: #ff000078!important;
+  color: #fff!important;
+}
+
+.bg-blue{
+  background-color: #1976d296!important;
+  color: #fff!important;
+}
