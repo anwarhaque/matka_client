@@ -230,7 +230,7 @@ input[type='number']::-webkit-inner-spin-button {
   align-items: center;
 }
 
-tr:nth-child(even) {
+.table-hover tr:nth-child(even) {
   background-color: #e9e8e8;
 }
 
@@ -242,4 +242,20 @@ tr:nth-child(even) {
 .bg-blue{
   background-color: #1976d296!important;
   color: #fff!important;
+}
+
+
+
+.marquee {
+
+  overflow: hidden;
+  white-space: nowrap;
+  box-sizing: border-box;
+  height: 40px;
+  background: burlywood;
+  color: #000000;
+  line-height: 40px;
+  font-weight: 900;
+  text-transform: uppercase;
+
 }
