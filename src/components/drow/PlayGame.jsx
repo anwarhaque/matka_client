@@ -57,8 +57,8 @@ const PlayGame = () => {
     }
   }
   const handleOk = async () => {
-   
-    if (seconds<=0) {
+
+    if (seconds <= 0) {
       Notifier('Round is Lock', 'Error')
       return  // Time has passed
     }
@@ -75,7 +75,7 @@ const PlayGame = () => {
 
     try {
 
-      
+
       const { client } = await Axios.post(`/game/add`, createData);
       setCurrentUser((pre) => ({ ...pre, limit: client.limit }))
       getListGame()
@@ -283,48 +283,43 @@ const PlayGame = () => {
         )
       }
 
-      <div className="col-12 col-lg-12 col-xxl-12 d-flex mt-4">
-        <div className="card flex-fill">
-          <div className="card-header">
-            <h5 className="card-title mb-0">Game List</h5>
-            <h5 className="card-title mb-0 pull-right">Total:{gameList.reduce((acc,item)=>acc+item.amount,0)}</h5>
-          </div>
-          <table className="table table-hover my-0">
-            <thead>
-              <tr>
-                <th>S.N.</th>
-                <th>Number</th>
-                <th>Amount</th>
-                <th>Type</th>
-                <th>Details</th>
-                <th>Action</th>
+      <div className="row d-flex mt-4">
+        <span> <b>Total:{gameList.reduce((acc, item) => acc + item.amount, 0)}</b></span>
+        <table className="table my-0">
+          <thead>
+            <tr className='bg-cadetblue'>
+              <th className='text-white'>S.N.</th>
+              <th className='text-white'>Number</th>
+              <th className='text-white'>Amount</th>
+              <th className='text-white'>Type</th>
+              <th className='text-white'>Details</th>
+              <th className='text-white'>Action</th>
 
-              </tr>
-            </thead>
-            <tbody>
-              {
-                loading ? (<tr><td calpan="4">Loading...</td></tr>) : (
-                  gameList.map((item, index) => (
-                    <tr key={item._id}>
-                      <td>{index + 1}</td>
-                      <td>{item.num} </td>
-                      <td>{item.amount}</td>
-                      <td>{item.gameType}</td>
-                      <td>{formatDate(item.lockTime)}</td>
-                      <td>
-                        <div style={{ display: "inline-flex" }}>
-                          <Link to={`#`} onClick={() => handleDelete(item._id)}><i className="fa fa-trash" style={{ color: 'red' }}></i></Link>
-                        </div>
-                      </td>
-                    </tr>
-                  ))
-                )
-              }
+            </tr>
+          </thead>
+          <tbody>
+            {
+              loading ? (<tr><td calpan="4">Loading...</td></tr>) : (
+                gameList.map((item, index) => (
+                  <tr key={item._id}>
+                    <td>{index + 1}</td>
+                    <td>{item.num} </td>
+                    <td>{item.amount}</td>
+                    <td>{item.gameType}</td>
+                    <td>{formatDate(item.lockTime)}</td>
+                    <td>
+                      <div style={{ display: "inline-flex" }}>
+                        <Link to={`#`} onClick={() => handleDelete(item._id)}><i className="fa fa-trash" style={{ color: 'red' }}></i></Link>
+                      </div>
+                    </td>
+                  </tr>
+                ))
+              )
+            }
 
-            </tbody>
-          </table>
-        </div>
-      </div>
+          </tbody>
+        </table>
+      </div >
     </>
   )
 }

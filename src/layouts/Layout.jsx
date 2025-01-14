@@ -14,7 +14,7 @@ const Layout = () => {
         <div className="marquee">
           <MarqueeNotification/>
         </div>
-        <main className="content">
+        <main className="content bg-cadetlightblue">
           <div className="container-fluid p-0">
             <Outlet /> {/* This renders the routed pages */}
           </div>

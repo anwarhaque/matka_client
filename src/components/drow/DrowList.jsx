@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Notifier from '../Notifier';
 import Axios from '../../api/Axios';
 import { convertTimeTo12HourFormat } from '../../helper/Helper';
-
+import './Drow.css'
 
 const DrowList = () => {
     const [drowList, setDrowList] = useState([]);
@@ -45,15 +45,15 @@ const DrowList = () => {
                 loading ? (<p>Loading..</p>) : (
                     drowList.map((item) => (
                         <div className="col-12 col-md-4" key={item._id}>
-                            <div className="card">
+                            <div className="card drow-card mx-3">
                                 <div className="card-header">
                                     <div className="d-flex justify-content-center">
                                         <h5 className="card-title mb-0">{item.name}</h5>
                                     </div>
                                 </div>
                                 <div className="card-body">
-                                    <div className="row ">
-                                        <div className="d-flex justify-content-between h4">
+                                    <div className="row">
+                                        <div className="d-flex justify-content-between text-white">
                                             <span >{convertTimeTo12HourFormat(item.openTime)}</span>
                                             {!item?.todaysGameResults && (
                                                 <span className="result-patti">
@@ -67,10 +67,10 @@ const DrowList = () => {
                                                 <span className="result-patti">
                                                     <span className="dash">{item?.todaysGameResults?.openPatti || '---'}</span>
                                                     <span className="result-number">
-                                                    {item?.todaysGameResults?.openPatti ? getPattiToNum(item?.todaysGameResults?.openPatti) : 'X'}
-                                                    {item?.todaysGameResults?.closePatti ? getPattiToNum(item?.todaysGameResults?.closePatti) : 'X'}
+                                                        {item?.todaysGameResults?.openPatti ? getPattiToNum(item?.todaysGameResults?.openPatti) : 'X'}
+                                                        {item?.todaysGameResults?.closePatti ? getPattiToNum(item?.todaysGameResults?.closePatti) : 'X'}
                                                     </span>
-                                                        
+
                                                     <span className="dash">{item?.todaysGameResults?.closePatti ? item?.todaysGameResults?.closePatti : '---'}</span>
                                                 </span>
 
@@ -82,7 +82,9 @@ const DrowList = () => {
                                 </div>
                                 <div className="card-footer ">
                                     <div className='d-flex justify-content-center'>
-                                        <Link to={`./${item._id}`} className="btn btn-primary">Play Now</Link>
+                                        <span className='play-btn'>
+                                            <Link to={`./${item._id}`} className="text-white">Play Now</Link>
+                                        </span>
                                     </div>
                                 </div>
                             </div>

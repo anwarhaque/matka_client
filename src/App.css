@@ -259,3 +259,12 @@ input[type='number']::-webkit-inner-spin-button {
   text-transform: uppercase;
 
 }
+
+.bg-cadetlightblue {
+  background: #cceaf2 !important;
+}
+
+.bg-cadetblue {
+  background: #5f9ea0 !important;
+  color: #fff !important;
+}

@@ -1,0 +1,50 @@
+.drow-card {
+    background: url('./../../assets/img/kalyan.png') no-repeat center center;
+    background-size: cover;
+    color: white;
+
+}
+
+.drow-card .card-header,
+.card-footer {
+    background-color: transparent;
+    color: inherit !important;
+}
+
+
+.drow-card .card-title {
+    color: #fff;
+    font-size: 1.7em;
+    font-weight: 500;
+}
+
+.drow-card .play-btn {
+    border-radius: 4px;
+    text-align: center;
+    position: relative;
+    font-family: ExoLight;
+    font-size: 1.4em;
+    display: inline-block;
+    cursor: pointer;
+    outline: none;
+    color: #fdfdfd;
+    border: none;
+    background: url('./../../assets/img/PWFButton.png') 0/100% 100% no-repeat;
+    padding: 3% 0;
+    width: 50%;
+    margin-top: 0;
+}
+
+.drow-card .play-btn a{
+    text-decoration: none;
+}
+
+.text-white {
+    color: #fff !important;
+}
+
+.content-fixed {
+    font-family: Exo, sans-serif;
+    font-size: 1.7em;
+}
+

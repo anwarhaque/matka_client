@@ -11,6 +11,11 @@ const Game = () => {
   const [loading, setLoading] = useState(true)
   const { drowId } = useParams()
 
+  const getPattiToNum = (patti) => {
+    const sum = patti.split('').reduce((acc, digit) => acc + parseInt(digit), 0);
+    return sum % 10;
+  }
+
   const getDrow = async () => {
 
     try {
@@ -34,28 +39,51 @@ const Game = () => {
       <div className="col-12 col-md-4">
         {
           loading ? (<p>Loading...</p>) : (
-           
-            <div className="card">
+
+            <div className="card drow-card">
               <div className="card-header">
                 <div className="d-flex justify-content-center">
-                  <Link to={`./OPEN`} className="btn btn-primary">Open Round</Link>
+                  <span className='play-btn'>
+                    <Link to={`./OPEN`} className="text-white">Open Round</Link>
+                  </span>
                 </div>
               </div>
               <div className="card-body pt-0">
-                <div className="row">
-                  <div className="d-flex justify-content-center mb-4 h4">
-                    <h4>{drow.name}</h4>
+                <div className="row text-white content-fixed">
+                  <div className="d-flex justify-content-center mb-4">
+                    <span>{drow.name}</span>
                   </div>
-                  <div className="d-flex justify-content-between h3">
+                  <div className="d-flex justify-content-between">
                     <span >{convertTimeTo12HourFormat(drow.openTime)}</span>
-                    <span >-XX-</span>
+                    {!drow?.todaysGameResults && (
+                      <span className="result-patti">
+                        <span className="dash">---</span>
+                        <span className="result-number">XX</span>
+                        <span className="dash">---</span>
+                      </span>
+                    )}
+                    {drow?.todaysGameResults && (
+
+                      <span className="result-patti">
+                        <span className="dash">{drow?.todaysGameResults?.openPatti || '---'}</span>
+                        <span className="result-number">
+                          {drow?.todaysGameResults?.openPatti ? getPattiToNum(drow?.todaysGameResults?.openPatti) : 'X'}
+                          {drow?.todaysGameResults?.closePatti ? getPattiToNum(drow?.todaysGameResults?.closePatti) : 'X'}
+                        </span>
+
+                        <span className="dash">{drow?.todaysGameResults?.closePatti ? drow?.todaysGameResults?.closePatti : '---'}</span>
+                      </span>
+
+                    )}
                     <span >{convertTimeTo12HourFormat(drow.closeTime)}</span>
                   </div>
                 </div>
               </div>
               <div className="card-footer ">
                 <div className='d-flex justify-content-center'>
-                  <Link to={`./CLOSE`} className="btn btn-primary">Close Round</Link>
+                  <span className='play-btn'>
+                    <Link to={`./CLOSE`} className="text-white">Close Round</Link>
+                  </span>
                 </div>
               </div>
             </div>
