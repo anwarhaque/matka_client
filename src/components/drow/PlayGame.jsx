@@ -64,7 +64,7 @@ const PlayGame = () => {
     }
 
     const createData = {
-      num: Number(num),
+      num: num,
       amount: Number(amount),
       roundType,
       drowId
