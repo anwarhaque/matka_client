@@ -302,14 +302,15 @@ const PlayGame = () => {
               loading ? (<tr><td calpan="4">Loading...</td></tr>) : (
                 gameList.map((item, index) => (
                   <tr key={item._id}>
-                    <td>{index + 1}</td>
+                    <td>{gameList.length - index}</td>
                     <td>{item.num} </td>
                     <td>{item.amount}</td>
                     <td>{item.gameType}</td>
                     <td>{formatDate(item.lockTime)}</td>
                     <td>
                       <div style={{ display: "inline-flex" }}>
-                        <Link to={`#`} onClick={() => handleDelete(item._id)}><i className="fa fa-trash" style={{ color: 'red' }}></i></Link>
+                      <Link to={`#`} onClick={() => handleDelete(item._id)} className="btn btn-danger">Remove</Link>
+                        {/* <Link to={`#`} onClick={() => handleDelete(item._id)}><i className="fa fa-trash" style={{ color: 'red' }}></i></Link> */}
                       </div>
                     </td>
                   </tr>

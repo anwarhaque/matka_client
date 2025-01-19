@@ -1,8 +1,33 @@
 .drow-card {
-    background: url('./../../assets/img/kalyan.png') no-repeat center center;
+    background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(4, 0, 0, 0.2));
     background-size: cover;
     color: white;
 
+}
+
+.drow-card-0 {
+    background:url('./../../assets/img/drow0.png') no-repeat center center;
+
+}
+
+.drow-card-1 {
+    background: url('./../../assets/img/drow1.png') no-repeat center center;
+}
+
+.drow-card-2 {
+    background: url('./../../assets/img/drow2.png') no-repeat center center;
+}
+
+.drow-card-3 {
+    background: url('./../../assets/img/drow3.png') no-repeat center center;
+}
+
+.drow-card-4 {
+    background: url('./../../assets/img/drow4.png') no-repeat center center;
+}
+
+.drow-card-5 {
+    background: url('./../../assets/img/drow5.png') no-repeat center center;
 }
 
 .drow-card .card-header,
@@ -35,7 +60,7 @@
     margin-top: 0;
 }
 
-.drow-card .play-btn a{
+.drow-card .play-btn a {
     text-decoration: none;
 }
 
@@ -47,4 +72,3 @@
     font-family: Exo, sans-serif;
     font-size: 1.7em;
 }
-
