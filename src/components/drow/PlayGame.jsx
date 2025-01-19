@@ -210,7 +210,7 @@ const PlayGame = () => {
               <tbody>
                 <tr>
                   <td>
-                    <input type="number" className="inputnumber keypad-num-input hover-input" name="number"
+                    <input type="text" className="inputnumber keypad-num-input hover-input" name="number"
                       value={num}
                       onFocus={() => setSelectedField('num')}
                       readOnly
