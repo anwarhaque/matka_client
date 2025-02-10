@@ -32,12 +32,12 @@ const Report = () => {
       drowId
     }
 
-   
+
 
     try {
 
       const { data } = await Axios.get('/report/list', { params: query });
-     
+
       setReports(data)
 
     } catch (err) {
@@ -201,16 +201,22 @@ const Report = () => {
                           </td>
                           <td className='bg-blue'>
                             {
-                              (value?.SINGLE_OPEN?.totalResultAmount || 0) +
-                              (value?.SINGLE_CLOSE?.totalResultAmount || 0) +
-                              (value?.JODI_OPEN?.totalResultAmount || 0) +
-                              (value?.PATTI_OPEN?.totalResultAmount || 0) +
-                              (value?.PATTI_CLOSE?.totalResultAmount || 0) +
-                              (value?.SINGLE_OPEN?.totalClientCommAmount || 0) +
-                              (value?.SINGLE_CLOSE?.totalClientCommAmount || 0) +
-                              (value?.JODI_OPEN?.totalClientCommAmount || 0) +
-                              (value?.PATTI_OPEN?.totalClientCommAmount || 0) +
-                              (value?.PATTI_CLOSE?.totalClientCommAmount || 0)
+                              (value?.SINGLE_OPEN?.totalAmount || 0) +
+                              (value?.PATTI_OPEN?.totalAmount || 0) +
+                              (value?.JODI_OPEN?.totalAmount || 0) +
+                              (value?.SINGLE_CLOSE?.totalAmount || 0) +
+                              (value?.PATTI_CLOSE?.totalAmount || 0)
+
+                              - ((value?.SINGLE_OPEN?.totalResultAmount || 0) +
+                                (value?.SINGLE_CLOSE?.totalResultAmount || 0) +
+                                (value?.JODI_OPEN?.totalResultAmount || 0) +
+                                (value?.PATTI_OPEN?.totalResultAmount || 0) +
+                                (value?.PATTI_CLOSE?.totalResultAmount || 0) +
+                                (value?.SINGLE_OPEN?.totalClientCommAmount || 0) +
+                                (value?.SINGLE_CLOSE?.totalClientCommAmount || 0) +
+                                (value?.JODI_OPEN?.totalClientCommAmount || 0) +
+                                (value?.PATTI_OPEN?.totalClientCommAmount || 0) +
+                                (value?.PATTI_CLOSE?.totalClientCommAmount || 0))
                             }
                           </td>
                         </tr>
@@ -428,16 +434,23 @@ const Report = () => {
                             Object.entries(item.groupedData).reduce(
                               (acc, [key, value]) =>
                                 acc + (
-                                  (value?.SINGLE_OPEN?.totalResultAmount || 0) +
-                                  (value?.SINGLE_CLOSE?.totalResultAmount || 0) +
-                                  (value?.JODI_OPEN?.totalResultAmount || 0) +
-                                  (value?.PATTI_OPEN?.totalResultAmount || 0) +
-                                  (value?.PATTI_CLOSE?.totalResultAmount || 0) +
-                                  (value?.SINGLE_OPEN?.totalClientCommAmount || 0) +
-                                  (value?.SINGLE_CLOSE?.totalClientCommAmount || 0) +
-                                  (value?.JODI_OPEN?.totalClientCommAmount || 0) +
-                                  (value?.PATTI_OPEN?.totalClientCommAmount || 0) +
-                                  (value?.PATTI_CLOSE?.totalClientCommAmount || 0)
+                                  (value?.SINGLE_OPEN?.totalAmount || 0) +
+                                  (value?.PATTI_OPEN?.totalAmount || 0) +
+                                  (value?.JODI_OPEN?.totalAmount || 0) +
+                                  (value?.SINGLE_CLOSE?.totalAmount || 0) +
+                                  (value?.PATTI_CLOSE?.totalAmount || 0)
+
+
+                                  - ((value?.SINGLE_OPEN?.totalResultAmount || 0) +
+                                    (value?.SINGLE_CLOSE?.totalResultAmount || 0) +
+                                    (value?.JODI_OPEN?.totalResultAmount || 0) +
+                                    (value?.PATTI_OPEN?.totalResultAmount || 0) +
+                                    (value?.PATTI_CLOSE?.totalResultAmount || 0) +
+                                    (value?.SINGLE_OPEN?.totalClientCommAmount || 0) +
+                                    (value?.SINGLE_CLOSE?.totalClientCommAmount || 0) +
+                                    (value?.JODI_OPEN?.totalClientCommAmount || 0) +
+                                    (value?.PATTI_OPEN?.totalClientCommAmount || 0) +
+                                    (value?.PATTI_CLOSE?.totalClientCommAmount || 0))
                                 ),
                               0)
                           }
@@ -753,16 +766,22 @@ const Report = () => {
                         Object.entries(item.groupedData).reduce(
                           (acc, [key, value]) =>
                             acc + (
-                              (value?.SINGLE_OPEN?.totalResultAmount || 0) +
-                              (value?.SINGLE_CLOSE?.totalResultAmount || 0) +
-                              (value?.JODI_OPEN?.totalResultAmount || 0) +
-                              (value?.PATTI_OPEN?.totalResultAmount || 0) +
-                              (value?.PATTI_CLOSE?.totalResultAmount || 0) +
-                              (value?.SINGLE_OPEN?.totalClientCommAmount || 0) +
-                              (value?.SINGLE_CLOSE?.totalClientCommAmount || 0) +
-                              (value?.JODI_OPEN?.totalClientCommAmount || 0) +
-                              (value?.PATTI_OPEN?.totalClientCommAmount || 0) +
-                              (value?.PATTI_CLOSE?.totalClientCommAmount || 0)
+                              (value?.SINGLE_OPEN?.totalAmount || 0) +
+                              (value?.PATTI_OPEN?.totalAmount || 0) +
+                              (value?.JODI_OPEN?.totalAmount || 0) +
+                              (value?.SINGLE_CLOSE?.totalAmount || 0) +
+                              (value?.PATTI_CLOSE?.totalAmount || 0)
+
+                              - ((value?.SINGLE_OPEN?.totalResultAmount || 0) +
+                                (value?.SINGLE_CLOSE?.totalResultAmount || 0) +
+                                (value?.JODI_OPEN?.totalResultAmount || 0) +
+                                (value?.PATTI_OPEN?.totalResultAmount || 0) +
+                                (value?.PATTI_CLOSE?.totalResultAmount || 0) +
+                                (value?.SINGLE_OPEN?.totalClientCommAmount || 0) +
+                                (value?.SINGLE_CLOSE?.totalClientCommAmount || 0) +
+                                (value?.JODI_OPEN?.totalClientCommAmount || 0) +
+                                (value?.PATTI_OPEN?.totalClientCommAmount || 0) +
+                                (value?.PATTI_CLOSE?.totalClientCommAmount || 0))
                             ),
                           0)
 
